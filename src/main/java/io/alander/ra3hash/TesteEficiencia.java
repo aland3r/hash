@@ -50,7 +50,6 @@ public class TesteEficiencia {
         int[] dist = tabela.distribuicao();
         int capacidade = tabela.getCapacidade();
 
-        // Agrupa posições em blocos de 100 para não lotar o console
         int bloco = 100;
         for (int i = 0; i < capacidade; i += bloco) {
             int fim = Math.min(i + bloco, capacidade);

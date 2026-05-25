@@ -2,21 +2,20 @@ package io.alander.ra3hash;
 
 public abstract class TabelaHash {
 
-    protected String[] tabela; //declara a variavel do array de strings
-    protected int capacidade; //tamanho atual do array
-    protected int tamanho;  //quantos elementos inseridos
-    protected int colisoes; //contador de colisoes para relatorio
-    protected static final double FATOR_DE_CARGA = 0.75; //limite de 75% qdo redimensiona (12 posicoes ocupadas)
-    protected static final String REMOVIDO = "__REMOVIDO__"; //marcador para posicoes removidas
+    protected String[] tabela;
+    protected int capacidade;
+    protected int tamanho;
+    protected int colisoes;
+    protected static final double FATOR_DE_CARGA = 0.75;
+    protected static final String REMOVIDO = "__REMOVIDO__";
 
     public TabelaHash(int capacidadeInicial) {
         this.capacidade = capacidadeInicial;
-        this.tabela = new String[capacidade]; //cria o array com 16 posicoes
+        this.tabela = new String[capacidade];
         this.tamanho = 0;
         this.colisoes = 0;
     }
 
-    // Cada subclasse implementa sua própria função hash
     protected abstract int funcaoHash(String chave);
 
     public void inserir(String chave) {
@@ -27,23 +26,23 @@ public abstract class TabelaHash {
         int indice = funcaoHash(chave);
         int tentativas = 0;
 
-        while (tabela[indice] != null && !tabela[indice].equals(REMOVIDO)) {  //sondagem linear em acao
+        while (tabela[indice] != null && !tabela[indice].equals(REMOVIDO)) {
             colisoes++;
             tentativas++;
-            indice = (indice + 1) % capacidade; // sondagem linear
-            if (tentativas >= capacidade) return; // tabela cheia (segurança)
+            indice = (indice + 1) % capacidade;
+            if (tentativas >= capacidade) return;
         }
 
         tabela[indice] = chave;
         tamanho++;
     }
 
-    public boolean buscar(String chave) { //chave é o calor buscado
-        int indice = funcaoHash(chave); //calcula o indice
+    public boolean buscar(String chave) {
+        int indice = funcaoHash(chave);
         int tentativas = 0;
 
         while (tabela[indice] != null) {
-            if (tabela[indice].equals(chave)) return true; //equals compara apenas o conteudo daquele espaco de memoria
+            if (tabela[indice].equals(chave)) return true;
             tentativas++;
             indice = (indice + 1) % capacidade;
             if (tentativas >= capacidade) break;

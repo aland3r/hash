@@ -9,32 +9,25 @@ public class Main {
 
     public static void main(String[] args) {
 
-        // 1. Leitura do CSV
         System.out.println("Lendo arquivo CSV...");
-        List<String> nomes = LeitorCSV.lerNomes(CAMINHO_CSV); //chama metodo sem criar objeto
-        //faz sentido pq a classe nao guarda estado nenhum e apenas executa uma tarefa
+        List<String> nomes = LeitorCSV.lerNomes(CAMINHO_CSV);
         System.out.println("Total de nomes carregados: " + nomes.size());
         System.out.println();
 
-        // 2. Inicialização das tabelas
         TabelaHash tabelaSoma = new TabelaHashSoma(CAPACIDADE_INICIAL);
         TabelaHash tabelaDJB2 = new TabelaHashDJB2(CAPACIDADE_INICIAL);
 
-        // 3. Testes de eficiência - Hash Soma
         TesteEficiencia testeSoma = new TesteEficiencia(tabelaSoma, "Hash Soma de Char");
         long tempoInsercaoSoma = testeSoma.medirInsercao(nomes);
         long tempoBuscaSoma    = testeSoma.medirBusca(nomes);
 
-        // 4. Testes de eficiência - DJB2
         TesteEficiencia testeDJB2 = new TesteEficiencia(tabelaDJB2, "Hash DJB2");
         long tempoInsercaoDJB2 = testeDJB2.medirInsercao(nomes);
         long tempoBuscaDJB2    = testeDJB2.medirBusca(nomes);
 
-        // 5. Relatórios
         testeSoma.imprimirRelatorio(tempoInsercaoSoma, tempoBuscaSoma);
         testeDJB2.imprimirRelatorio(tempoInsercaoDJB2, tempoBuscaDJB2);
 
-        // 6. Comparativo final
         System.out.println("============================================================");
         System.out.println("  COMPARATIVO FINAL");
         System.out.println("============================================================");
