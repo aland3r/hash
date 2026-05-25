@@ -1,15 +1,17 @@
+package io.alander.ra3hash;
+
 public abstract class TabelaHash {
 
-    protected String[] tabela;
-    protected int capacidade;
-    protected int tamanho;
-    protected int colisoes;
-    protected static final double FATOR_DE_CARGA = 0.75;
-    protected static final String REMOVIDO = "__REMOVIDO__";
+    protected String[] tabela; //declara a variavel do array de strings
+    protected int capacidade; //tamanho atual do array
+    protected int tamanho;  //quantos elementos inseridos
+    protected int colisoes; //contador de colisoes para relatorio
+    protected static final double FATOR_DE_CARGA = 0.75; //limite de 75% qdo redimensiona (12 posicoes ocupadas)
+    protected static final String REMOVIDO = "__REMOVIDO__"; //marcador para posicoes removidas
 
     public TabelaHash(int capacidadeInicial) {
         this.capacidade = capacidadeInicial;
-        this.tabela = new String[capacidade];
+        this.tabela = new String[capacidade]; //cria o array com 16 posicoes
         this.tamanho = 0;
         this.colisoes = 0;
     }
@@ -25,7 +27,7 @@ public abstract class TabelaHash {
         int indice = funcaoHash(chave);
         int tentativas = 0;
 
-        while (tabela[indice] != null && !tabela[indice].equals(REMOVIDO)) {
+        while (tabela[indice] != null && !tabela[indice].equals(REMOVIDO)) {  //sondagem linear em acao
             colisoes++;
             tentativas++;
             indice = (indice + 1) % capacidade; // sondagem linear
@@ -36,12 +38,12 @@ public abstract class TabelaHash {
         tamanho++;
     }
 
-    public boolean buscar(String chave) {
-        int indice = funcaoHash(chave);
+    public boolean buscar(String chave) { //chave é o calor buscado
+        int indice = funcaoHash(chave); //calcula o indice
         int tentativas = 0;
 
         while (tabela[indice] != null) {
-            if (tabela[indice].equals(chave)) return true;
+            if (tabela[indice].equals(chave)) return true; //equals compara apenas o conteudo daquele espaco de memoria
             tentativas++;
             indice = (indice + 1) % capacidade;
             if (tentativas >= capacidade) break;

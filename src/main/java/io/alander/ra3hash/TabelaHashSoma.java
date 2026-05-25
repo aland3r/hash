@@ -1,3 +1,5 @@
+package io.alander.ra3hash;
+
 public class TabelaHashSoma extends TabelaHash {
 
     public TabelaHashSoma(int capacidadeInicial) {

@@ -1,3 +1,5 @@
+package io.alander.ra3hash;
+
 import java.util.List;
 
 public class Main {
@@ -9,7 +11,8 @@ public class Main {
 
         // 1. Leitura do CSV
         System.out.println("Lendo arquivo CSV...");
-        List<String> nomes = LeitorCSV.lerNomes(CAMINHO_CSV);
+        List<String> nomes = LeitorCSV.lerNomes(CAMINHO_CSV); //chama metodo sem criar objeto
+        //faz sentido pq a classe nao guarda estado nenhum e apenas executa uma tarefa
         System.out.println("Total de nomes carregados: " + nomes.size());
         System.out.println();
 

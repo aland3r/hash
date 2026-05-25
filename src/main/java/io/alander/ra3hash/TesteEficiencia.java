@@ -1,3 +1,5 @@
+package io.alander.ra3hash;
+
 import java.util.List;
 
 public class TesteEficiencia {
