@@ -1,6 +1,6 @@
 # RA3 — Tabela Hash em Java
 
-Implementação comparativa de tabela hash com duas funções hash distintas, desenvolvida como atividade avaliativa (RA3) da disciplina de Resolução de Problemas.
+Implementação comparativa de tabela hash com duas funções hash distintas, desenvolvida como atividade avaliativa (RA3) da disciplina de Resolução de Problemas Estrutuados em Computação.
 
 ## Objetivo
 
